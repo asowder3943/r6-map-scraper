@@ -18,7 +18,8 @@ function downloadFile(reqUrl, fileName){
         if (res.status == 200) {
             fileName = fileName || reqUrl.split("/").pop();
 
-            const dir = path.resolve(fileName);
+            const dir = path.resolve("downloads/" + fileName);
+            console.log(dir)
             res.data.pipe(fs.createWriteStream(dir));
             res.data.on("end", () => {
                 console.log("download completed");
